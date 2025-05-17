@@ -1,40 +1,40 @@
-# ---------------------------------------------------------------
-# DeSplat
-# ---------------------------------------------------------------
-- year: "2025"
-  paper-logo: "https://aaltoml.github.io/desplat/asset/firstpage_desplat.png"
-  paper-title: "DeSplat: Decomposed Gaussian Splatting for Distractor-Free Rendering"
-  paper-authors: 
-    - name: Yihao Wang
-      link: https://johanna0626.github.io
-      institutions: [Technical University of Munich]
+# # ---------------------------------------------------------------
+# # DeSplat
+# # ---------------------------------------------------------------
+# - year: "2025"
+#   paper-logo: "https://aaltoml.github.io/desplat/asset/firstpage_desplat.png"
+#   paper-title: "DeSplat: Decomposed Gaussian Splatting for Distractor-Free Rendering"
+#   paper-authors: 
+#     - name: Yihao Wang
+#       link: https://johanna0626.github.io
+#       institutions: [Technical University of Munich]
 
-    - name: Marcus Klasson
-      link: https://marcusklasson.github.io
-      institutions: [Aalto University]
+#     - name: Marcus Klasson
+#       link: https://marcusklasson.github.io
+#       institutions: [Aalto University]
 
-    - name: <b>Matias Turkulainen</b>
-      link: https://maturk.github.io
-      institutions: []
+#     - name: <b>Matias Turkulainen</b>
+#       link: https://maturk.github.io
+#       institutions: []
     
-    - name: Shuzhe Wang
-      link: https://ffrivera0.github.io
-      institutions: [Aalto University]
+#     - name: Shuzhe Wang
+#       link: https://ffrivera0.github.io
+#       institutions: [Aalto University]
 
-    - name: Juho Kannala
-      link: https://users.aalto.fi/~kannalj1/
-      institutions: [Aalto University, Oulu University]
+#     - name: Juho Kannala
+#       link: https://users.aalto.fi/~kannalj1/
+#       institutions: [Aalto University, Oulu University]
 
-    - name: Arno Solin
-      link: https://users.aalto.fi/~asolin/
-      institutions: [Aalto University]
+#     - name: Arno Solin
+#       link: https://users.aalto.fi/~asolin/
+#       institutions: [Aalto University]
 
-  link-arxiv: https://arxiv.org/abs/2411.19756
-  link-projectpage: https://aaltoml.github.io/desplat/
-  link-gitcode: https://github.com/AaltoML/desplat/
-  link-gitcode-button: https://ghbtns.com/github-btn.html?user=AaltoML&repo=desplat&type=star&count=true
-  paper-pub: Conference on Computer Vision and Pattern Recognition (CVPR), 2025
+#   link-arxiv: https://arxiv.org/abs/2411.19756
+#   link-projectpage: https://aaltoml.github.io/desplat/
+#   link-gitcode: https://github.com/AaltoML/desplat/
+#   link-gitcode-button: https://ghbtns.com/github-btn.html?user=AaltoML&repo=desplat&type=star&count=true
+#   paper-pub: Conference on Computer Vision and Pattern Recognition (CVPR), 2025
 
-# ---------------------------------------------------------------
-# AGS-Mesh
-# ---------------------------------------------------------------
+# # ---------------------------------------------------------------
+# # AGS-Mesh
+# # ---------------------------------------------------------------
