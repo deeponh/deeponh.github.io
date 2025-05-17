@@ -1,0 +1,49 @@
+---
+---
+@import "style";
+
+.content .profile-picture {
+  height: 30%;
+  width: 30%;
+  position: relative;
+  margin: -20px 15px 0 15px;
+  float: right;
+  border-radius: 5%;
+}
+
+.content .paper-list {
+	line-height: 100%;
+	font-size: 14px;
+	.paper-logo {
+        width: 200px;
+        height: auto;
+        max-height: 150px;
+        position: center;
+        margin: 0px 0px 0px 0;
+    }
+	.paper-title {
+		font-size: 18px;
+		height: 25%;
+		font-weight: bold;
+    }
+    .paper-authors {
+    	height: 25%;
+    }
+    .paper-pub {
+    	height: 25%;
+    	font-weight: bold;
+    	font-style: italic;
+    }
+    .paper-links {
+    	height: 25%;
+    }
+
+    .project-logo {
+        width: 150px;
+        height: 100px;
+        max-height: 150px;
+        max-width: 100%;
+        position: relative;
+        margin: auto;
+    }
+}

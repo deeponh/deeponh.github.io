@@ -1,0 +1,34 @@
+title: Deepon Halder
+email: deeponh.2004@gmail.com
+url: deeponh.github.io
+baseurl: ""
+
+# Social media links
+github_username:  cneuralnetwork
+linkedin_username: Deepon-Halder
+
+markdown: kramdown
+# ins_logo: "./bits-logo.png"
+
+# Build settings
+remote_theme: jekyll/minima
+# theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+
+collections:
+  projects:
+    output: true
+    order:
+      - test.md
+
+minima:
+  date_format: "%b %-d, %Y"
+  skin: auto
+  
+google_analytics: G-5XWRW1V88P
+
+nav:
+ - name: "Resume"
+   link: "cv.pdf"
