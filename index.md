@@ -225,7 +225,7 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 
 Date | Event | Details
 -----|-------|--------
-May, 21st 2025 | SRM IST Campus| --
+May, 21st 2025 | SRM IST Campus| kk
 ---
 <br>
 > If you can’t explain something to a first-year student, then you haven’t really understood it. - R. Feynman
