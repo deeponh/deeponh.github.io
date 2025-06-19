@@ -3,19 +3,26 @@
 # ---------------------------------------------------------------
 - year: "2025"
   paper-logo: ""
-  paper-title: "Filler"
+  paper-title: "CycleDistill: Bootstrapping Machine Translation using LLMs with Cyclical Distillation"
   paper-authors: 
-    - name: Filler
-      link: filler
-      institutions: Filler
+    - name: Deepon Halder
+      link: deeponh.github.io
+      institutions: AI4Bharat, IIEST Shibpur
+    - name: Thanmay Jayakumar
+      link: https://thanmayjayakumar.github.io/
+      institutions: AI4Bharat, IIT Madras
+    - name: Raj Dabre
+      link: https://prajdabre.github.io/
+      institutions: AI4Bharat, IIT Madras, IIT Bombay
+ 
 
 
 
   link-arxiv: f
-  link-projectpage: filler
-  link-gitcode: filler
-  link-gitcode-button: filler
-  paper-pub: filler
+  link-projectpage: None
+  link-gitcode: https://github.com/deeps73/CycleDistill
+  link-gitcode-button: None
+  paper-pub: Under Review
 
 # ---------------------------------------------------------------
 # AGS-Mesh
