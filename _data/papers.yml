@@ -1,27 +1,24 @@
 # ---------------------------------------------------------------
-# DeSplat
+# CyclicDistill
 # ---------------------------------------------------------------
 - year: "2025"
-  paper-logo: ""
+  paper-logo: "assets/paper1.png"
   paper-title: "CycleDistill: Bootstrapping Machine Translation using LLMs with Cyclical Distillation"
   paper-authors: 
-    - name: Deepon Halder
+    - name: <b>Deepon Halder</b>
       link: deeponh.github.io
-      institutions: AI4Bharat, IIEST Shibpur
+      institutions: [AI4Bharat, IIEST Shibpur]
     - name: Thanmay Jayakumar
       link: https://thanmayjayakumar.github.io/
-      institutions: AI4Bharat, IIT Madras
+      institutions: [AI4Bharat, IIT Madras]
     - name: Raj Dabre
       link: https://prajdabre.github.io/
-      institutions: AI4Bharat, IIT Madras, IIT Bombay
- 
-
-
+      institutions: [AI4Bharat, IIT Madras, IIT Bombay]
 
   link-arxiv: f
-  link-projectpage: None
+  # link-projectpage: None
   link-gitcode: https://github.com/deeps73/CycleDistill
-  link-gitcode-button: None
+  link-gitcode-button: https://ghbtns.com/github-btn.html?user=deeps73&repo=CycleDistill&type=star&count=true
   paper-pub: Under Review
 
 # ---------------------------------------------------------------

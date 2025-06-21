@@ -6,7 +6,7 @@ layout: default
 <tr>
     <td><img class="profile-picture" src="me_deepon.png"></td>
     <td><div class="profile-doc">
-		Intern @ AI4Bharat, IIT Madras <br>
+		Research @ AI4Bharat, IIT Madras <br>
         UG @ IIEST Shibpur <br>
         <br>
 		<a href="mailto:deeponh.2004@gmail.com">
@@ -138,7 +138,18 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 </table>
 {% endfor %}
 {% endfor %}
-
+---
+## News
+<tr>
+    <td><div>
+	<b>2025</b>
+        <ul>
+		<li> 23.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
+		<li> 30.05.2025 : I have passed my 2nd year with a CGPA of <a style="text-decoration:none">8.91</a>!</li>
+		<li> 27.01.2025 : Joined <a href="https://ai4bharat.iitm.ac.in/">AI4Bharat</a> as a Research Intern!</li>
+        </ul>
+	</div></td>
+</tr>
 ---
 ## Projects
 <tr>
@@ -220,12 +231,12 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
         
 	</div></td>
 </tr>
----
-## Invited talks
 
-Date | Event | Details
------|-------|--------
-May, 21st 2025 | SRM IST Campus| kk
 ---
 <br>
-> If you can’t explain something to a first-year student, then you haven’t really understood it. - R. Feynman
+<blockquote style="text-align:left;">
+  <em>If you can’t explain something to a first-year student, then you haven’t really understood it.</em><br>
+  — R. Feynman
+</blockquote>
+<br>
+<br>
