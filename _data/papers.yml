@@ -6,7 +6,7 @@
   paper-title: "CycleDistill: Bootstrapping Machine Translation using LLMs with Cyclical Distillation"
   paper-authors: 
     - name: <b>Deepon Halder</b>
-      link: deeponh.github.io
+      link: https://deeponh.github.io
       institutions: [AI4Bharat, IIEST Shibpur]
     - name: Thanmay Jayakumar
       link: https://thanmayjayakumar.github.io/
@@ -15,7 +15,7 @@
       link: https://prajdabre.github.io/
       institutions: [AI4Bharat, IIT Madras, IIT Bombay]
 
-  link-arxiv: f
+  link-arxiv: https://arxiv.org/abs/2506.19952
   # link-projectpage: None
   link-gitcode: https://github.com/deeps73/CycleDistill
   link-gitcode-button: https://ghbtns.com/github-btn.html?user=deeps73&repo=CycleDistill&type=star&count=true
