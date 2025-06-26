@@ -22,5 +22,27 @@
   paper-pub: Under Review
 
 # ---------------------------------------------------------------
-# AGS-Mesh
+# A Comprehensive Survey of Data Poisoning Attacks
+# and their Detection Techniques
 # ---------------------------------------------------------------
+- year: "2025"
+  paper-logo: "assets/paper2.png"
+  paper-title: "A Comprehensive Survey of Data Poisoning Attacks"
+  paper-authors: 
+    - name: <b>Deepon Halder</b>
+      link: https://deeponh.github.io
+      institutions: [IIEST Shibpur]
+    - name: Anshika Gupta
+      link: #
+      institutions: [IIEST Shibpur]
+    - name: Diya Ghosh
+      link: #
+      institutions: [IIEST Shibpur]
+    - name: Hafizur Rehman
+      link: #
+      institutions: [IIEST Shibpur]
+  link-arxiv: https://www.researchgate.net/profile/Deepon-Halder/publication/391593961_A_Comprehensive_Survey_of_Data_Poisoning_Attacks_and_their_Detection_Techniques/links/681dba8dded4331557443349/A-Comprehensive-Survey-of-Data-Poisoning-Attacks-and-their-Detection-Techniques.pdf
+  # link-projectpage: None
+  link-gitcode: #
+  link-gitcode-button: #
+  paper-pub: Survey Paper

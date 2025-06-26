@@ -30,6 +30,18 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 
 
 
+## News
+<tr>
+    <td><div>
+	<b>2025</b>
+        <ul>
+		<li> 26.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
+		<li> 22.06.2025 : Helped in reviewing a paper at <a style="text-decoration:none">ACL May ARR 2025</a></li>
+		<li> 30.05.2025 : I have passed my 2nd year with a CGPA of <a style="text-decoration:none">8.91</a>!</li>
+		<li> 27.01.2025 : Joined <a href="https://ai4bharat.iitm.ac.in/">AI4Bharat</a> as a Research Intern!</li>
+        </ul>
+	</div></td>
+</tr>
 
 
 ## Publications
@@ -138,19 +150,7 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 </table>
 {% endfor %}
 {% endfor %}
----
-## News
-<tr>
-    <td><div>
-	<b>2025</b>
-        <ul>
-		<li> 26.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
-		<li> 22.06.2025 : Helped in reviewing a paper at <a style="text-decoration:none">ACL May ARR 2025</a></li>
-		<li> 30.05.2025 : I have passed my 2nd year with a CGPA of <a style="text-decoration:none">8.91</a>!</li>
-		<li> 27.01.2025 : Joined <a href="https://ai4bharat.iitm.ac.in/">AI4Bharat</a> as a Research Intern!</li>
-        </ul>
-	</div></td>
-</tr>
+
 ---
 ## Projects
 <tr>
