@@ -23,7 +23,7 @@ layout: default
 	</div></td>
 </tr>
 
-I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras under the guidance of <a href="https://prajdabre.github.io/">Dr. Raj Dabre</a>. I am also known as <a href="https://cneuralnets.netlify.app">neuralnets</a>. Feel free to contact me for any queries.
+I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras under the guidance of <a href="https://prajdabre.github.io/">Dr. Raj Dabre</a>. I also work with <a href="https://anoopk.github.io/">Dr. Anoop Kunchukuttan</a> and  <a href="https://https://ratishsp.github.io/">Dr. Ratish Puduppully</a>. I am also known as <a href="https://cneuralnets.netlify.app">neuralnets</a>. Feel free to contact me for any queries.
 
 
 
@@ -35,8 +35,8 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2025</b>
         <ul>
-		<li> 13.07.2025 : Helped in reviewing two papers at <a style="text-decoration:none">MELT Workshop, CoLM</a></li>
-		<li> 26.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
+		<li> 13.07.2025 : Helped in reviewing two papers at <a href="https://melt-workshop.github.io/">MELT Workshop, CoLM</a></li>
+		<li> 26.06.2025 : <a href="https://arxiv.org/abs/2506.19952">CycleDistill</a> Preprint is out!</li>
 		<li> 22.06.2025 : Helped in reviewing a paper at <a style="text-decoration:none">ACL May ARR 2025</a></li>
 		<li> 30.05.2025 : I have passed my 2nd year with a CGPA of <a style="text-decoration:none">8.91</a>!</li>
 		<li> 27.01.2025 : Joined <a href="https://ai4bharat.iitm.ac.in/">AI4Bharat</a> as a Research Intern!</li>
