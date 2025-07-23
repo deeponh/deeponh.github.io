@@ -23,7 +23,7 @@ layout: default
 	</div></td>
 </tr>
 
-I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras under the guidance of <a href="https://prajdabre.github.io/">Dr. Raj Dabre</a>. I also work with <a href="https://anoopk.github.io/">Dr. Anoop Kunchukuttan</a> and  <a href="https://https://ratishsp.github.io/">Dr. Ratish Puduppully</a>. I am also known as <a href="https://cneuralnets.netlify.app">neuralnets</a>. Feel free to contact me for any queries.
+I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras under the guidance of <a href="https://prajdabre.github.io/">Dr. Raj Dabre</a>. I am also known as <a href="https://cneuralnets.netlify.app">neuralnets</a>. Feel free to contact me for any queries.
 
 
 
@@ -35,8 +35,8 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2025</b>
         <ul>
-		<li> 13.07.2025 : Helped in reviewing two papers at <a href="https://melt-workshop.github.io/">MELT Workshop, CoLM</a></li>
-		<li> 26.06.2025 : <a href="https://arxiv.org/abs/2506.19952">CycleDistill</a> Preprint is out!</li>
+		<li> 13.07.2025 : Helped in reviewing two papers at <a style="text-decoration:none">MELT Workshop, CoLM</a></li>
+		<li> 26.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
 		<li> 22.06.2025 : Helped in reviewing a paper at <a style="text-decoration:none">ACL May ARR 2025</a></li>
 		<li> 30.05.2025 : I have passed my 2nd year with a CGPA of <a style="text-decoration:none">8.91</a>!</li>
 		<li> 27.01.2025 : Joined <a href="https://ai4bharat.iitm.ac.in/">AI4Bharat</a> as a Research Intern!</li>
@@ -166,6 +166,64 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 	</div></td>
 </tr>
 ---
+## Past Experience
+<tr>
+    <td><div>
+        <a href="https://drive.google.com/file/d/1Zd9U8XNWYN_atgvO0wz4qdHgxpQoFLbo/view?usp=sharing">
+			Research Intern :</a> IIT Bhubaneshwar [Dec 2024 - Jan 2025] 
+            <br> 
+            <br> 
+			<a href="#">
+			Research Apprentice :</a> IIEST Shibpur [July 2024 - Sept 2024]
+            <br> 
+            <br> 
+        
+	</div></td>
+</tr>
+---
+## Events and Achievements over Time 
+<tr>
+    <td><div>
+	<a href="#">
+			Winner - Cody Challenge 2025 :</a> Finished a month long course on MATLAB, and won the Cody Challenge at the end by solving 20/20 problems in the contest
+            <br> 
+            <br> 
+			<a href="#">
+			Winner - Braindead Hackathon :</a> Won 1st prize at this hackathon by building a finetuned Mistral 7B to summarize texts
+            <br> 
+            <br> 
+			<a href="#">
+			1st Runners Up - MCode Metallum :</a> Coded up a modern to-do app and won 2nd prize
+            <br> 
+            <br> 
+			<a href="#">
+			1st Runners Up - Startup Challenge @ IIEST:</a> Made a project Auto@Kol, which aimed to connect the auto-rickshaw framework efficiently in Kolkata 
+            <br> 
+            <br> 
+			<a href="#">
+			2nd Runners Up - Hacknovare Instruo :</a> Coded up a mental health management app and won the 3rd prize
+            <br> 
+            <br> 
+	<a href="#">
+			Cohere ML School 2025 :</a> Got selected - couldn't attend due to previous engagements
+            <br> 
+            <br> 
+	<a href="#">
+			The Residency Feb 2025 :</a> Got selected in the Bangalore Cohort of The Residency - didn't go
+            <br> 
+            <br> 
+        <a href="#">
+			KVPY 2021 SA :</a> Extra Merit List Scholar
+            <br> 
+            <br> 
+			<a href="#">
+			JBNSTS Scholar :</a> Selected in top 250 students in West Bengal
+            <br> 
+            <br> 
+        
+	</div></td>
+</tr>
+---
 ## Technical Blogs
 <tr>
    <td><div>
@@ -217,21 +275,6 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
            all about quantization:</a> a guide into how quantization occurs in llms.
            <br>
    </div></td>
-</tr>
----
-## Past Experience
-<tr>
-    <td><div>
-        <a href="https://drive.google.com/file/d/1Zd9U8XNWYN_atgvO0wz4qdHgxpQoFLbo/view?usp=sharing">
-			Research Intern :</a> IIT Bhubaneshwar [Dec 2024 - Jan 2025] 
-            <br> 
-            <br> 
-			<a href="#">
-			Research Apprentice :</a> IIEST Shibpur [July 2024 - Sept 2024]
-            <br> 
-            <br> 
-        
-	</div></td>
 </tr>
 
 ---
