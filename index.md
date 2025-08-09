@@ -35,6 +35,7 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2025</b>
         <ul>
+		<li> 07.08.2025 : CycleDistill has been accepted at <a style="text-decoration:none">MELT Workshop, CoLM!</a></li>
 		<li> 13.07.2025 : Helped in reviewing two papers at <a style="text-decoration:none">MELT Workshop, CoLM</a></li>
 		<li> 26.06.2025 : <a href="">CycleDistill</a> Preprint is out!</li>
 		<li> 22.06.2025 : Helped in reviewing a paper at <a style="text-decoration:none">ACL May ARR 2025</a></li>
