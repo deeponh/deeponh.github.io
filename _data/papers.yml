@@ -16,10 +16,10 @@
       institutions: [AI4Bharat, IIT Madras, IIT Bombay]
 
   link-arxiv: https://arxiv.org/abs/2506.19952
-  # link-projectpage: None
+  link-projectpage: https://cycledistill.netlify.app/
   link-gitcode: https://github.com/deeps73/CycleDistill
   link-gitcode-button: https://ghbtns.com/github-btn.html?user=deeps73&repo=CycleDistill&type=star&count=true
-  paper-pub: Under Review
+  paper-pub: MELT Workshop @ COLM 2025
 
 # ---------------------------------------------------------------
 # A Comprehensive Survey of Data Poisoning Attacks
