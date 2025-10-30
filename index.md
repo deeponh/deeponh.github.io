@@ -35,7 +35,7 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2025</b>
         <ul>
-		<li> 30.10.2025 : <a href="https://www.arxiv.org/abs/2510.24932">Riddlebench</a> Preprint is out!</a></li>
+		<li> 30.10.2025 : <a href="https://www.arxiv.org/abs/2510.24932">Riddlebench</a> Preprint is out!</li>
 		<li> 07.08.2025 : CycleDistill has been accepted at <a style="text-decoration:none">MELT Workshop, CoLM!</a></li>
 		<li> 13.07.2025 : Helped in reviewing two papers at <a style="text-decoration:none">MELT Workshop, CoLM</a></li>
 		<li> 26.06.2025 : <a href="https://arxiv.org/abs/2506.19952">CycleDistill</a> Preprint is out!</li>
@@ -105,6 +105,11 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 
 			{% if paper.link-gitcode %}
 			<a href="{{paper.link-gitcode}}" target="_blank" rel="noopener">
+				<i class="fa fa-github" aria-hidden="true"></i> Github </a>  
+	        {% endif %}
+
+			{% if paper.link-huggingface %}
+			<a href="{{paper.link-huggingface}}" target="_blank" rel="noopener">
 				🤗 HuggingFace </a>  
 	        {% endif %}
 
