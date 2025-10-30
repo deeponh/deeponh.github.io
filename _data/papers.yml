@@ -1,4 +1,37 @@
 # ---------------------------------------------------------------
+# Riddlebench
+# ---------------------------------------------------------------
+- year: "2025"
+  paper-logo: "assets/paper3.png"
+  paper-title: "RiddleBench: A New Generative Reasoning Benchmark for LLMs"
+  paper-authors: 
+    - name: <b>Deepon Halder</b>
+      link: https://deeponh.github.io
+      institutions: [AI4Bharat, IIEST Shibpur]
+    - name: Alan Saji
+      link: https://www.linkedin.com/in/alan-saji-915976224/
+      institutions: [AI4Bharat, IIT Madras]
+    - name: Thanmay Jayakumar
+      link: https://thanmayjayakumar.github.io/
+      institutions: [AI4Bharat, IIT Madras]
+    - name: Raj Dabre
+      link: https://prajdabre.github.io/
+      institutions: [AI4Bharat, IIT Madras, IIT Bombay, Google]
+    - name: Ratish Puduppully
+      link: https://ratishsp.github.io/
+      institutions: [IT University of Copenhagen]
+    - name: Anoop Kunchukuttan
+      link: https://anoopk.in/
+      institutions: [AI4Bharat, Microsoft India]
+
+
+  link-arxiv: https://www.arxiv.org/abs/2510.24932
+  link-projectpage: https://riddlebench.netlify.app/
+  link-gitcode: https://huggingface.co/datasets/ai4bharat/RiddleBench
+  link-gitcode-button: https://img.shields.io/badge/HuggingFace-Space-yellow?logo=huggingface&logoColor=white
+  paper-pub: Under Review
+
+# ---------------------------------------------------------------
 # CyclicDistill
 # ---------------------------------------------------------------
 - year: "2025"
