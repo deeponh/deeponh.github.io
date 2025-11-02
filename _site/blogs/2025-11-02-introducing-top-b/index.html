@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Introducing top-b</title>
+
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <meta name="keywords" content="blog, accent, , Deepon Halder, jekyll"> -->
+    <meta name="keywords" content="Ruilong Li; 李瑞龙; Computer Vision; Deep Learning; Tsinghua University; CSCG">
+    <meta name="author" content="">
+    
+    
+    
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="alternate" type="application/rss+xml" title="Deepon Halder RSS" href="/feed.xml" />
+    <link rel="stylesheet" href="/css/main.css">
+    
+    
+    <!-- Facebook Open Graph -->
+    <meta name="og:description" content="">
+    <meta name="og:title" content="Deepon Halder">
+    <meta name="og:url" content="http://localhost:4000/blogs/2025-11-02-introducing-top-b/">
+    <meta name="og:type" content="article">
+    
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Deepon Halder">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:url" content="http://localhost:4000/blogs/2025-11-02-introducing-top-b/">
+    
+        <meta name="twitter:image" content="">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar container">
+            
+            <a id="author-name" class="alignable pull-left" href="/">Deepon Halder</a>
+            <ul id="navlist" class="alignable pull-right navbar-ul">
+                
+                    
+                        <li class="alignable pull-left nav-list"><a href="/blogs">Blogs</a></li>
+                    
+                
+                    
+                        <li class="alignable pull-left nav-list"><a target="_blank" href="cv.pdf">Resume</a></li>
+                    
+                
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <hr>
+        
+            <div class="container content">
+        
+                <!-- MathJax Configuration -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    tags: 'ams',
+    macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => {
+        console.log('MathJax initial typesetting complete');
+      });
+    }
+  }
+};
+</script>
+<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+.code-block-wrapper {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-block-wrapper pre {
+    margin: 0;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) #f0f0f0;
+}
+
+.code-block-wrapper code {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+}
+
+/* Custom scrollbar to match page style */
+.code-block-wrapper pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: transparent;
+    color: #FF0F00;
+    border: 1px solid #FF0F00;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-family: "Space Grotesk", sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background-color: #FF0F00;
+    color: white;
+    text-decoration: none;
+}
+
+.copy-button:active {
+    background-color: #cc0c00;
+    border-color: #cc0c00;
+}
+
+.copy-button.copied {
+    background-color: #FF0F00;
+    color: white;
+    border-color: #FF0F00;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('.code-block-wrapper');
+    
+    codeBlocks.forEach(function(wrapper) {
+        const button = wrapper.querySelector('.copy-button');
+        const codeBlock = wrapper.querySelector('code');
+        
+        if (button && codeBlock) {
+            button.addEventListener('click', function() {
+                const text = codeBlock.textContent || codeBlock.innerText;
+                
+                // Use the modern Clipboard API
+                navigator.clipboard.writeText(text).then(function() {
+                    // Visual feedback
+                    const originalText = button.textContent;
+                    button.classList.add('copied');
+                    button.textContent = '✓ Copied!';
+                    
+                    setTimeout(function() {
+                        button.classList.remove('copied');
+                        button.textContent = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalText = button.textContent;
+                        button.classList.add('copied');
+                        button.textContent = '✓ Copied!';
+                        setTimeout(function() {
+                            button.classList.remove('copied');
+                            button.textContent = originalText;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            });
+        }
+    });
+});
+</script>
+
+<div class="blog-post">
+    <h1 class="blog-title">Introducing top-b</h1>
+    
+    <div class="blog-meta">
+        <p class="blog-date">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 
+            Nov 2, 2025
+        </p>
+        
+        <p class="blog-author">
+            <i class="fa fa-user" aria-hidden="true"></i> 
+            Deepon Halder, Raj Dabre, Ratish Pudupully, Anoop Kunchukuttan
+        </p>
+        
+        
+        <p class="blog-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i> 
+            
+                <span class="tag">language models</span>, 
+            
+                <span class="tag">sampling methods</span>, 
+            
+                <span class="tag">top-b</span>, 
+            
+                <span class="tag">NLP</span>, 
+            
+                <span class="tag">generative AI</span>
+            
+        </p>
+        
+    </div>
+    
+    <hr>
+    
+    <div class="blog-content">
+        <p><em>This project is being done at AI4Bharat, IIT Madras. The work is still in progress and in barebones state at the moment. We are releasing a part of the work that has been done for the community.</em></p>
+
+<h2 id="0-introduction">0. Introduction</h2>
+
+<p>Existing sampling strategies in language models — such as <strong>Top-k</strong> (<a href="https://arxiv.org/abs/1805.04833">Fan et al., 2018</a>), <strong>Top-p</strong> (<a href="https://arxiv.org/abs/1904.09751">Holtzman et al., 2020</a>), and <strong>Min-p</strong> (<a href="https://arxiv.org/abs/2407.19605">Minh et al., 2024</a>) — rely on <em>static</em> or <em>absolute</em> thresholds to determine which tokens to consider at each generation step. While these methods work well in many contexts, they lack <em>adaptive responsiveness</em> to local probability distributions, leading to suboptimal diversity or stability depending on the prompt or task.<br />
+<strong>Top-b sampling</strong> introduces a <em>relative probability band</em> centered around the most likely token, enabling dynamic, context-sensitive control over token selection.</p>
+
+<hr />
+
+<h2 id="1-motivation">1. Motivation</h2>
+
+<p>Language models output a probability distribution $P(t_i \mid C)$ over the vocabulary $V$, conditioned on context $C$. Traditional sampling methods filter this distribution using fixed criteria:</p>
+
+<ul>
+  <li><strong>Top-k:</strong> Retain only the $k$ most probable tokens (<a href="https://arxiv.org/abs/1805.04833">Fan et al., 2018</a>).</li>
+  <li><strong>Top-p:</strong> Retain the smallest set of tokens $S \subset V$ such that:
+\(\sum_{t_i \in S} P(t_i \mid C) \geq p\)
+(<a href="https://arxiv.org/abs/1904.09751">Holtzman et al., 2020</a>)</li>
+  <li><strong>Min-p:</strong> Discard all tokens below a fixed probability threshold (<a href="https://arxiv.org/abs/2407.19605">Minh et al., 2024</a>).</li>
+</ul>
+
+<p>Each of these imposes a static boundary — either in <em>rank space</em> (Top-k) or <em>probability space</em> (Top-p, Min-p). However, the <em>shape</em> of the output distribution varies widely across contexts. A single fixed threshold cannot adapt to these changes.</p>
+
+<hr />
+
+<h2 id="2-the-core-idea">2. The Core Idea</h2>
+
+<p>Top-b sampling defines a <strong>relative band</strong> around the top token probability.</p>
+
+<p>Let $t_1$ be the most probable token with probability:</p>
+
+\[P_{\max} = P(t_1 \mid C)\]
+
+<p>Then define a <em>bandwidth ratio</em> $b \in (0, 1]$, and include all tokens whose probability falls within this band:</p>
+
+\[S_b = \{t_i \in V \mid P(t_i \mid C) \geq b \cdot P_{\max}\}\]
+
+<p>where \(b=1-adaptive\_bandwidth\)</p>
+
+<p>Sampling then proceeds by renormalizing the probabilities within $S_b$:</p>
+
+\[P'(t_i \mid C) = \begin{cases}
+\dfrac{P(t_i \mid C)}{\sum_{t_j \in S_b} P(t_j \mid C)} &amp; \text{if } t_i \in S_b \\
+0 &amp; \text{otherwise}
+\end{cases}\]
+
+<p>This creates an <strong>adaptive dynamic threshold</strong> — its width depends on the distribution’s concentration.</p>
+
+<hr />
+
+<h2 id="3-adaptive-bandwidth">3. Adaptive Bandwidth</h2>
+
+<p>Let the probability distribution over tokens be denoted by $\mathbf{p} = {p_i}$, and let the Shannon entropy, $H(\mathbf{p})$, be given by:</p>
+
+\[H(\mathbf{p}) = -\sum_i p_i \log p_i\]
+
+<p>We define the adaptive bandwidth as:</p>
+
+\[\mathrm{adaptive\_bandwidth} = \mathrm{base\_bandwidth} \times \left( 1 + \frac{H(\mathbf{p})}{H_{\max}} \right )\]
+
+<p>where:</p>
+<ul>
+  <li>$\text{base_bandwidth}$ is the initial (static) bandwidth value (e.g., 0.2)</li>
+  <li>$H(\mathbf{p})$ is the computed entropy of the current probability distribution</li>
+  <li>$H_{\max}$ is the maximum possible entropy for the distribution (e.g., $\log(\text{vocab_size})$ if the distribution were uniform)</li>
+</ul>
+
+<hr />
+
+<h3 id="lemma-1-maximum-entropy-for-uniform-distribution"><em>Lemma 1: Maximum Entropy for Uniform Distribution</em></h3>
+<p>The maximum entropy possible in any case is:</p>
+
+\[H_{\max} = \log n\]
+
+<p>where n is the total number of tokens, or the vocabulary.<br />
+<strong><em>Proof :</em></strong>
+If the entropy is maximum, it means that all the probabilities will be equal, aka it will be a uniform distribution.</p>
+
+\[\forall i \in \{1, \ldots, n\}, \quad P_i = \frac{1}{n}\]
+
+<p>Hence using the formula of entropy, we can say:</p>
+
+\[H_{\max} = -\sum_{i=1}^n \frac{1}{n} \log \frac{1}{n}\]
+
+\[= -\sum_{i=1}^n \frac{1}{n} (-\log n)\]
+
+\[= -(-\log n) \sum_{i=1}^n \frac{1}{n}\]
+
+\[= \log n\]
+
+<hr />
+
+<h2 id="code-for-top-b">Code for Top-b</h2>
+
+<p>Here’s a quick PyTorch snippet for how top-b works</p>
+
+<div class="code-block-wrapper">
+<button class="copy-button">Copy</button>
+<pre><code class="language-python">def apply_top_b(probs, base_bandwidth=0.5):
+    entropy = -(probs * torch.log(probs + 1e-10)).sum()
+    vocab_size = probs.shape[0]
+    H_max = torch.log(torch.tensor(vocab_size, dtype=torch.float))
+    adaptive_bandwidth = base_bandwidth * (1 + entropy / H_max)
+    p_top = probs.max()
+    t = p_top * (1 - adaptive_bandwidth)
+    mask = (probs &gt;= t).float()
+    return mask
+</code></pre>
+</div>
+
+<h2 id="results">Results</h2>
+<h3 id="experiment-1--gpqa">Experiment 1 : GPQA</h3>
+<p>The GPQA dataset (<a href="https://arxiv.org/abs/2311.12022">Rein et al., 2023</a>) consists primarily of multiple-choice questions spanning a wide variety of physics, chemistry and many science topics.</p>
+
+<p>All the experiments were run on 5-shot setting. The experiments were run on a set of 8xH100 GPUs for around a day. Hyperparameters are attached below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Model</td>
+      <td>google/gemma-3-4b-it</td>
+    </tr>
+    <tr>
+      <td>Max New Tokens</td>
+      <td>512</td>
+    </tr>
+    <tr>
+      <td>Seed</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>Dtype</td>
+      <td>torch.bfloat16</td>
+    </tr>
+    <tr>
+      <td>Split</td>
+      <td>gpqa_main</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The results were as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Accuracy</th>
+      <th>Avg_Entropy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Top-b</strong></td>
+      <td>0.2285</td>
+      <td><strong>0.1579</strong></td>
+    </tr>
+    <tr>
+      <td>Eta</td>
+      <td>0.2099</td>
+      <td>0.1592</td>
+    </tr>
+    <tr>
+      <td>Min-p</td>
+      <td>0.2199</td>
+      <td>0.1714</td>
+    </tr>
+    <tr>
+      <td>Epsilon</td>
+      <td><strong>0.2389</strong></td>
+      <td>0.1712</td>
+    </tr>
+    <tr>
+      <td>Top-p</td>
+      <td>0.2132</td>
+      <td>0.1764</td>
+    </tr>
+    <tr>
+      <td>Temperature</td>
+      <td>0.2121</td>
+      <td>0.1774</td>
+    </tr>
+    <tr>
+      <td>Top-k</td>
+      <td>0.2333</td>
+      <td>0.1815</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If we see the figure below, we see the variance is the least for top-b. We will implore if that is the case in most cases. We also achieve the lowest entropy with top-b.</p>
+
+<figure style="max-width:450px; margin:auto;">
+  <img src="/assets/top-b/gpqa_acc.png" alt="GPQA Scores" style="width:100%; height:auto;" />
+  <figcaption style="text-align:center; font-size:0.95em;">Figure: GPQA accuracy scores(best case) for different decoding strategies with variance</figcaption>
+</figure>
+
+<p>We ran all the experiments over the temperatures, <strong>0.7, 1.0, 2.0, 2.5</strong>, and over 5 base values of bandwidths, <strong>0.1, 0.2, 0.3, 0.4, 0.5</strong>. We noticed the following result over all temperatures and bandwidths. We currently can’t infer any conclusion from this.</p>
+
+<figure style="max-width:450px; margin:auto;">
+  <img src="/assets/top-b/gpqa_topb_var.png" alt="GPQA Top-b Variance" style="width:100%; height:auto;" />
+  <figcaption style="text-align:center; font-size:0.95em;">Figure: Top-b accuracy variance on GPQA dataset</figcaption>
+</figure>
+
+<p>We also did an analysis of how the entropy maps in top-b v/s top-p. Figure below:</p>
+
+<figure style="max-width:450px; margin:auto;">
+  <img src="/assets/top-b/entropy_anal_gpqa.png" alt="GPQA Entropy Analysis" style="width:100%; height:auto;" />
+  <figcaption style="text-align:center; font-size:0.95em;">Figure: Entropy comparison of top-b vs top-p decoding strategies on the GPQA dataset</figcaption>
+</figure>
+
+<p>We see the patterns are pretty similar in both the cases, but in the second half of the plot, top-b makes the entropy to close to 0, while top-p still has a lot of confusion, aka high entropy. The average entropy is lower for top-b as well. We feel like top-b makes it sure that the number of points, where entropy can be high, are as low as possible - hence allowing the model to give answers with the least amount of variance.</p>
+
+<hr />
+
+<h2 id="citation">Citation</h2>
+
+<p>If you reference this work, please cite it as:</p>
+
+<div class="code-block-wrapper">
+<!-- <button class="copy-button">Copy</button> -->
+<pre><code>@misc{halder2025topb,
+  author       = {Deepon Halder, Raj Dabre, Ratish Pudupully, Anoop Kunchukuttan},
+  title        = {Introducing top-b: Adaptive Relative Band Sampling for Language Models},
+  year         = {2025},
+  howpublished = {\url{https://deeponh.github.io/blog/introducing-top-b}},
+}
+</code></pre>
+</div>
+<hr />
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Fan, A., Lewis, M., &amp; Dauphin, Y. (2018). <a href="https://arxiv.org/abs/1805.04833"><em>Hierarchical Neural Story Generation</em></a>. <em>Proceedings of ACL 2018</em>.</li>
+  <li>Holtzman, A., Buys, J., Du, L., Forbes, M., &amp; Choi, Y. (2020). <a href="https://arxiv.org/abs/1904.09751"><em>The Curious Case of Neural Text Degeneration</em></a>. <em>ICLR 2020</em>.</li>
+  <li>Minh, T. et al. (2024). <a href="https://arxiv.org/abs/2407.19605"><em>Turning Up the Heat: Min-p Sampling for Reliable Language Model Decoding</em></a>. <em>arXiv preprint arXiv:2407.19605</em>.</li>
+  <li>Rein, D., Muennighoff, N., Schaeffer, R., Dey, M., &amp; Xie, E. (2023). <a href="https://arxiv.org/abs/2311.12022"><em>GPQA: A Graduate-Level Google-Proof Q&amp;A Benchmark</em></a>. <em>arXiv preprint arXiv:2311.12022</em>.</li>
+</ul>
+
+    </div>
+    
+    <hr>
+    
+    <div class="blog-navigation">
+        <a href="/blogs" class="back-to-blogs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Blogs
+        </a>
+    </div>
+</div>
+
+                
+            </div>
+    </div>
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XWRW1V88P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XWRW1V88P');
+</script>
+    
+</body>
+<footer>
+</footer>

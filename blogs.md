@@ -8,7 +8,8 @@ permalink: /blogs/
 
 Welcome to my blog section!
 
-{% assign sorted_blogs = site.blogs | sort: 'date' | reverse %}
+{% assign visible_blogs = site.blogs | where_exp: "blog", "blog.hidden != true" %}
+{% assign sorted_blogs = visible_blogs | sort: 'date' | reverse %}
 
 {% if sorted_blogs.size > 0 %}
 <div class="blog-list">
