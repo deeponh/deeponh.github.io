@@ -1,13 +1,12 @@
 ---
 layout: blog
-title: "Understanding KL Divergence Through Hospital Wait Times"
+title: "Wait, what's KL Divergence"
 date: 2025-11-02
 author: "Deepon Halder"
 excerpt: "A practical exploration of KL divergence using hospital emergency room wait times, comparing normal and exponential distributions to find the best model for real-world data."
 tags: ["machine learning", "statistics", "KL divergence", "probability distributions", "data science"]
 ---
 
-*Originally made by [cneuralnets.netlify.app](https://cneuralnets.netlify.app/)*
 
 ## Story Time
 
