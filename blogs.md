@@ -6,7 +6,7 @@ permalink: /blogs/
 
 ## Blogs
 
-Welcome to my blog section! Here you'll find my thoughts on machine learning, research, and technology.
+Welcome to my blog section!
 
 {% assign sorted_blogs = site.blogs | sort: 'date' | reverse %}
 
