@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Linear Regression: A Gentle Introduction</title>
+
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <meta name="keywords" content="blog, accent, , Deepon Halder, jekyll"> -->
+    <meta name="keywords" content="Ruilong Li; 李瑞龙; Computer Vision; Deep Learning; Tsinghua University; CSCG">
+    <meta name="author" content="">
+    
+    
+    
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="alternate" type="application/rss+xml" title="Deepon Halder RSS" href="/feed.xml" />
+    <link rel="stylesheet" href="/css/main.css">
+    
+    
+    <!-- Facebook Open Graph -->
+    <meta name="og:description" content="">
+    <meta name="og:title" content="Deepon Halder">
+    <meta name="og:url" content="http://localhost:4000/blogs/2024-12-19-linear-regression/">
+    <meta name="og:type" content="article">
+    
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Deepon Halder">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:url" content="http://localhost:4000/blogs/2024-12-19-linear-regression/">
+    
+        <meta name="twitter:image" content="">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar container">
+            
+            <a id="author-name" class="alignable pull-left" href="/">Deepon Halder</a>
+            <ul id="navlist" class="alignable pull-right navbar-ul">
+                
+                    
+                        <li class="alignable pull-left nav-list"><a href="/blogs">Blogs</a></li>
+                    
+                
+                    
+                        <li class="alignable pull-left nav-list"><a target="_blank" href="cv.pdf">Resume</a></li>
+                    
+                
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <hr>
+        
+            <div class="container content">
+        
+                <!-- MathJax Configuration -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    tags: 'ams',
+    macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => {
+        console.log('MathJax initial typesetting complete');
+      });
+    }
+  }
+};
+</script>
+<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+.code-block-wrapper {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-block-wrapper pre {
+    margin: 0;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) #f0f0f0;
+}
+
+.code-block-wrapper code {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+}
+
+/* Custom scrollbar to match page style */
+.code-block-wrapper pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: transparent;
+    color: #FF0F00;
+    border: 1px solid #FF0F00;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-family: "Space Grotesk", sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background-color: #FF0F00;
+    color: white;
+    text-decoration: none;
+}
+
+.copy-button:active {
+    background-color: #cc0c00;
+    border-color: #cc0c00;
+}
+
+.copy-button.copied {
+    background-color: #FF0F00;
+    color: white;
+    border-color: #FF0F00;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('.code-block-wrapper');
+    
+    codeBlocks.forEach(function(wrapper) {
+        const button = wrapper.querySelector('.copy-button');
+        const codeBlock = wrapper.querySelector('code');
+        
+        if (button && codeBlock) {
+            button.addEventListener('click', function() {
+                const text = codeBlock.textContent || codeBlock.innerText;
+                
+                // Use the modern Clipboard API
+                navigator.clipboard.writeText(text).then(function() {
+                    // Visual feedback
+                    const originalText = button.textContent;
+                    button.classList.add('copied');
+                    button.textContent = '✓ Copied!';
+                    
+                    setTimeout(function() {
+                        button.classList.remove('copied');
+                        button.textContent = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalText = button.textContent;
+                        button.classList.add('copied');
+                        button.textContent = '✓ Copied!';
+                        setTimeout(function() {
+                            button.classList.remove('copied');
+                            button.textContent = originalText;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            });
+        }
+    });
+});
+</script>
+
+<div class="blog-post">
+    <h1 class="blog-title">Linear Regression: A Gentle Introduction</h1>
+    
+    <div class="blog-meta">
+        <p class="blog-date">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 
+            Dec 19, 2024
+        </p>
+        
+        <p class="blog-author">
+            <i class="fa fa-user" aria-hidden="true"></i> 
+            Deepon Halder
+        </p>
+        
+        
+        <p class="blog-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i> 
+            
+                <span class="tag">linear regression</span>, 
+            
+                <span class="tag">machine learning</span>, 
+            
+                <span class="tag">statistics</span>, 
+            
+                <span class="tag">regression</span>, 
+            
+                <span class="tag">data science</span>
+            
+        </p>
+        
+    </div>
+    
+    <hr>
+    
+    <div class="blog-content">
+        <h2 id="what-is-it">What is it?</h2>
+
+<p>The equation for linear regression is :</p>
+
+\[y=\alpha_0+\alpha_1x_1+\alpha_2x_2+.....+\alpha_nx_n+\epsilon\]
+
+<p>where :</p>
+<ul>
+  <li>$y$ is the <strong>dependent variable</strong>, the variable we are trying to predict</li>
+  <li>$x_i$ is the <strong>independent variable</strong>, the features our model is trying to use</li>
+  <li>$\alpha_i$ is the <strong>coefficient</strong> (or weights) of our linear regression, they are what we are learning essentially</li>
+  <li>$\epsilon$ is the <strong>error</strong> in our model</li>
+</ul>
+
+<p>What we mainly try to do is try to <strong>fit the model</strong>. By fitting we mean, we need to find the set of coefficients that will form the best predictions for $y$, closest to the actual values. Finally it will be as easy as just plugging in the values of $x_i$ in the equation below to find your prediction</p>
+
+\[\hat{y}=\hat{\alpha_0}+\hat{\alpha_1x_1}+\hat{\alpha_2x_2}+....+\hat{\alpha_nx_n}\]
+
+<hr />
+
+<h2 id="assumptions-of-regression-models">Assumptions of Regression Models</h2>
+
+<p>While making a regression model, one must always keep in mind the <strong>4 rules</strong> that are assumed to be true before we move on to make the model!</p>
+
+<h3 id="linear-relationship">Linear Relationship</h3>
+<p>The fundamental principle of multiple linear regression is that there is a <strong>linear relationship</strong> between the dependent (outcome) variable and the independent variables. This linearity can be visually assessed using scatterplots, which should indicate a straight-line relationship rather than a curvilinear one.</p>
+
+<blockquote>
+  <p><strong>Edit:</strong> However, it is essential to clarify that while the relationship between the dependent and independent variables must be <strong>linear in terms of the coefficients</strong>, this does not preclude the need for transformations if the raw data exhibits non-linear patterns. It is specifically the relationship between the dependent variable and the <strong>model parameters</strong>, and not necessarily to the raw data itself.</p>
+</blockquote>
+
+<h3 id="multivariate-normality">Multivariate Normality</h3>
+<p>The analysis presumes that the <strong>residuals</strong> (the differences between observed and predicted values) follow a <strong>normal distribution</strong>. This assumption can be evaluated by inspecting histograms or Q-Q plots of the residuals, or through statistical tests like the Kolmogorov-Smirnov test.</p>
+
+<h3 id="absence-of-multicollinearity">Absence of Multicollinearity</h3>
+<p>It is crucial that the independent variables are <strong>not excessively correlated</strong> with one another, a situation referred to as multicollinearity. This can be assessed using:</p>
+
+<ul>
+  <li><strong>Correlation Matrices:</strong> Ideally, correlation coefficients should be <strong>below 0.80</strong>.</li>
+  <li><strong>Variance Inflation Factor (VIF):</strong> VIF values exceeding <strong>10</strong> suggest significant multicollinearity. Potential solutions include centering the data (subtracting the mean from each observation) or removing the variables contributing to multicollinearity.</li>
+</ul>
+
+<h3 id="homoscedasticity">Homoscedasticity</h3>
+<p>The variance of error terms (residuals) should remain <strong>consistent</strong> across all levels of the independent variables. A scatterplot of residuals against predicted values should not reveal any identifiable patterns, such as a cone-shaped distribution, which would indicate <strong>heteroscedasticity</strong>. To address heteroscedasticity, one might consider data transformation or incorporating a quadratic term into the model.</p>
+
+<h3 id="what-happens-if-any-one-assumption-fails">What happens if any one assumption fails?</h3>
+<p>Don’t worry, your main task to make a model that closely mimics the original data. If your model fails to do that, then closely see which assumption is failing and try to address it. Maybe try to add new data, augment some data, and try out different techniques such that your assumptions work out!</p>
+
+<hr />
+
+<h2 id="extra-info--slope-and-intercepts">Extra Info : Slope and Intercepts</h2>
+
+<p>In the world of regression analysis, the <strong>slope</strong> is like the crystal ball of your equation. It tells you how much your dependent variable ($y$) is likely to change when your independent variable ($x$) increases.
+It can be found out by the below two formulas :</p>
+
+\[m = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\]
+
+\[m = r \cdot \frac{S_y}{S_x}\]
+
+<p>in the second formula, $r$ is the <strong>correlation co-efficient</strong>. $S_y$ and $S_x$ is the standard deviation of $x$ and $y$, and $r$ can be calculated as</p>
+
+\[r = \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\]
+
+<p>In the world of regression analysis, the <strong>y-intercept</strong> is like the starting point of our story. Mathematically speaking, it’s the point where our regression line crosses the y-axis. In other words, it’s the value of $y$ when $x$ is zero. Here $m$ is the slope and $b$ is the y-intercept (note: the text incorrectly labels $m$ as slope in the first equation below, which is a repeat of the slope formula).</p>
+
+\[m = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\]
+
+\[b = \bar{y} - m\bar{x}\]
+
+<hr />
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>To actually understand how linear regression works, let’s try out an example.
+Let’s try to make a model that will predict the <strong>price</strong> of a house using the <strong>size</strong> of the house (in sqft)</p>
+
+<p>It has exactly one feature, i.e the size of the house, so our linear regression equation will look like :</p>
+
+\[price=\alpha_1 \cdot size+\alpha_0\]
+
+<figure style="display: block; margin: 2em auto; max-width: 500px;">
+  <img src="/assets/blog2/1.png" alt="House prices vs. Size linear regression demo" style="width: 100%; height: auto;" />
+  <figcaption style="text-align: center; font-size: 0.97em; margin-top: 0.6em;">
+    Figure: Scatterplot of house prices vs. size (sqft) — the starting point for our regression example.
+  </figcaption>
+</figure>
+
+<p>Let us first think of the most obvious answer for the model to be the average of this data $\sim$ 271666$</p>
+
+<p>The equation becomes :</p>
+
+\[price=0 \cdot size+271666
+=271666\]
+
+<figure style="display: block; margin: 2em auto; max-width: 500px;">
+  <img src="/assets/blog2/2.png" alt="Scatterplot of house prices vs. size" style="width: 100%; height: auto;" />
+  <figcaption style="text-align: center; font-size: 0.97em; margin-top: 0.6em;">
+    Figure: The average model predicts a constant price—shown here as a horizontal line; clearly, this does not fit the trend seen in the scatterplot.
+  </figcaption>
+</figure>
+<p>We can obviously see this model is very absurd as it will never predict the correct values for most of the input values. But we now need to know exactly how bad the model is.
+To find how our model works performance wise, we plot the <strong>error</strong> of each of our values. Error is nothing but the distance from the our original observation to our predicted observation.</p>
+
+<figure style="display: block; margin: 2em auto; max-width: 500px;">
+  <img src="/assets/blog2/3.png" alt="Error plot for average price model on house prices vs. size" style="width: 100%; height: auto;" />
+  <figcaption style="text-align: center; font-size: 0.97em; margin-top: 0.6em;">
+    Figure: Visualizing the prediction errors for the average price model, each vertical line shows the gap between a true house price and its predicted value (the horizontal average line).
+  </figcaption>
+</figure>
+
+<p>The main goal is to reduce this so that we find a line that fits our data the best! So basically we have to find the best possible values for $\alpha_1$ and $\alpha_0$.
+So here our main goal becomes to minimize something called the <strong>cost function</strong></p>
+
+<h3 id="cost-function">Cost Function</h3>
+
+<p>It is the function that measures the <strong>performance of a model</strong>. It in its essence is the calculation of the error between the predicted value and the expected values.</p>
+
+<blockquote>
+  <p><strong>one common mistake</strong></p>
+  <ul>
+    <li><strong>cost function</strong> is the <strong>average of errors</strong> over $n$ samples of data</li>
+    <li><strong>loss function</strong> is the <strong>error for an individual data point</strong></li>
+  </ul>
+</blockquote>
+
+<p>The cost function of a linear regression is nothing but <strong>Mean Squared Error</strong>, which is :</p>
+
+\[J = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2\]
+
+<p>It works by squaring the distance between every data point and its corresponding point on the regression line</p>
+
+<h3 id="how-to-minimize">How to Minimize</h3>
+
+<p>We will be using the <strong>Gradient Descent</strong> algorithm which starts with some initial $\theta$ and repeatedly performs an update to find the minimum value of $J$. ($n=2$ according to our example)</p>
+
+\[\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)\]
+
+<p>First let’s try to solve the partial derivative term of the gradient descent algorithm for any single case of $(x,y)$</p>
+
+\[\frac{\partial}{\partial \theta_j} J(\theta) = \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_\theta(x) - y)^2 
+
+= 2 \cdot \frac{1}{2} (h_\theta(x) - y) \cdot \frac{\partial}{\partial \theta_j} (h_\theta(x) - y)\]
+
+\[= (h_\theta(x) - y) \cdot \frac{\partial}{\partial \theta_j} \left( \sum_{i=0}^d \theta_i x_i - y \right) 
+
+= (h_\theta(x) - y) x_j\]
+
+<p>So the update rule becomes :</p>
+
+\[\theta_j := \theta_j + \alpha \left( y^{(i)} - h_\theta(x^{(i)}) \right) x_j^{(i)}\]
+
+<p>This rule of updatation is also called <strong>Widrow-Hoff Learning Rule</strong>. The magnitude of the update is proportional to the error term.</p>
+
+<h3 id="normal-form">Normal Form</h3>
+
+<p>Now let’s try to find the $\theta$ that minimizes $J$. First we design a matrix $X$, with all the training examples and a $\vec{y}$, which will have all the target values from training set:</p>
+
+\[X = \begin{bmatrix}
+— (x^{(1)})^T — \\
+— (x^{(2)})^T — \\
+\vdots \\
+— (x^{(n)})^T —
+\end{bmatrix}\]
+
+\[\vec{y} = \begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(n)}
+\end{bmatrix}\]
+
+<p>We can further show two results</p>
+
+<p><strong>Result 1</strong></p>
+
+\[X\theta - \vec{y} = \begin{bmatrix}
+(x^{(1)})^T\theta \\
+\vdots \\
+(x^{(n)})^T\theta
+\end{bmatrix} - \begin{bmatrix}
+y^{(1)} \\
+\vdots \\
+y^{(n)}
+\end{bmatrix} = \begin{bmatrix}
+h_\theta(x^{(1)}) - y^{(1)} \\
+\vdots \\
+h_\theta(x^{(n)}) - y^{(n)}
+\end{bmatrix}\]
+
+<p><strong>Result 2</strong></p>
+
+\[\frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) = \frac{1}{2}\sum_{i=1}^n (h_\theta(x^{(i)}) - y^{(i)})^2 = J\]
+
+<p>To minimise $J$, we must find it’s derivative w.r.t to $\theta$</p>
+
+\[\nabla_\theta J = \nabla_\theta \frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y})
+= \frac{1}{2}\nabla_\theta ((X\theta)^T X\theta - (X\theta)^T \vec{y} - \vec{y}^T(X\theta) + \vec{y}^T\vec{y})\]
+
+\[= \frac{1}{2}\nabla_\theta (\theta^T(X^T X)\theta - \vec{y}^T(X\theta) - \vec{y}^T(X\theta)) 
+= \frac{1}{2}\nabla_\theta (\theta^T(X^T X)\theta - 2(X^T\vec{y})^T\theta)\]
+
+\[= \frac{1}{2}(2X^T X\theta - 2X^T\vec{y}) 
+= X^T X\theta - X^T\vec{y}\]
+
+<p>Hence for $J$ to be minimum, our $\nabla_\theta J$ has be to be $0$.</p>
+
+\[X^T X\theta = X^T\vec{y} \\
+\theta=(X^T X)^{-1}X^T\vec{y}\]
+
+<p>Hence, the value of $\theta$ that minimizes $J$ is given in closed form by the above equation!</p>
+
+<hr />
+
+<h2 id="the-code-for-linear-regression">The code for Linear Regression</h2>
+
+<h3 id="gradient-descent">Gradient Descent</h3>
+
+<div class="code-block-wrapper">
+<button class="copy-button">Copy</button>
+<pre><code class="language-python">def gradient_descent(X, y, learning_rate=0.01, iterations=1000):
+    m, n = X.shape
+    theta = np.zeros(n)
+    for _ in range(iterations):
+        h = X.dot(theta)
+        gradient = (1/m) * X.T.dot(h - y)
+        theta -= learning_rate * gradient
+    return theta
+</code></pre>
+</div>
+
+<h3 id="normal-form-1">Normal Form</h3>
+
+<div class="code-block-wrapper">
+<button class="copy-button">Copy</button>
+<pre><code class="language-python">def normal_equation(X, y):
+    return np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+</code></pre>
+</div>
+
+<hr />
+
+<p>Finally after applying all these logic, we find the equation to be</p>
+
+\[{price}=756.9 \cdot sqft-27153.8\]
+
+<figure style="display: block; margin: 2em auto; max-width: 500px;">
+  <img src="/assets/blog2/4.png" alt="Linear regression visualization" style="width: 100%; height: auto;" />
+  <figcaption style="text-align: center; font-size: 0.97em; margin-top: 0.6em;">
+    Figure: Visualization of the best-fit line from linear regression on the dataset.
+  </figcaption>
+</figure>
+
+
+    </div>
+    
+    <hr>
+    
+    <div class="blog-navigation">
+        <a href="/blogs" class="back-to-blogs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Blogs
+        </a>
+    </div>
+</div>
+
+                
+            </div>
+    </div>
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XWRW1V88P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XWRW1V88P');
+</script>
+    
+</body>
+<footer>
+</footer>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Wait, what's KL Divergence</title>
+
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <meta name="keywords" content="blog, accent, , Deepon Halder, jekyll"> -->
+    <meta name="keywords" content="Ruilong Li; 李瑞龙; Computer Vision; Deep Learning; Tsinghua University; CSCG">
+    <meta name="author" content="">
+    
+    
+    
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="alternate" type="application/rss+xml" title="Deepon Halder RSS" href="/feed.xml" />
+    <link rel="stylesheet" href="/css/main.css">
+    
+    
+    <!-- Facebook Open Graph -->
+    <meta name="og:description" content="">
+    <meta name="og:title" content="Deepon Halder">
+    <meta name="og:url" content="http://localhost:4000/blogs/2025-05-16-understanding-kl-divergence-through-hospital-wait-times/">
+    <meta name="og:type" content="article">
+    
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Deepon Halder">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:url" content="http://localhost:4000/blogs/2025-05-16-understanding-kl-divergence-through-hospital-wait-times/">
+    
+        <meta name="twitter:image" content="">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar container">
+            
+            <a id="author-name" class="alignable pull-left" href="/">Deepon Halder</a>
+            <ul id="navlist" class="alignable pull-right navbar-ul">
+                
+                    
+                        <li class="alignable pull-left nav-list"><a href="/blogs">Blogs</a></li>
+                    
+                
+                    
+                        <li class="alignable pull-left nav-list"><a target="_blank" href="cv.pdf">Resume</a></li>
+                    
+                
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <hr>
+        
+            <div class="container content">
+        
+                <!-- MathJax Configuration -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    tags: 'ams',
+    macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => {
+        console.log('MathJax initial typesetting complete');
+      });
+    }
+  }
+};
+</script>
+<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+.code-block-wrapper {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-block-wrapper pre {
+    margin: 0;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) #f0f0f0;
+}
+
+.code-block-wrapper code {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+}
+
+/* Custom scrollbar to match page style */
+.code-block-wrapper pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: transparent;
+    color: #FF0F00;
+    border: 1px solid #FF0F00;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-family: "Space Grotesk", sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background-color: #FF0F00;
+    color: white;
+    text-decoration: none;
+}
+
+.copy-button:active {
+    background-color: #cc0c00;
+    border-color: #cc0c00;
+}
+
+.copy-button.copied {
+    background-color: #FF0F00;
+    color: white;
+    border-color: #FF0F00;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('.code-block-wrapper');
+    
+    codeBlocks.forEach(function(wrapper) {
+        const button = wrapper.querySelector('.copy-button');
+        const codeBlock = wrapper.querySelector('code');
+        
+        if (button && codeBlock) {
+            button.addEventListener('click', function() {
+                const text = codeBlock.textContent || codeBlock.innerText;
+                
+                // Use the modern Clipboard API
+                navigator.clipboard.writeText(text).then(function() {
+                    // Visual feedback
+                    const originalText = button.textContent;
+                    button.classList.add('copied');
+                    button.textContent = '✓ Copied!';
+                    
+                    setTimeout(function() {
+                        button.classList.remove('copied');
+                        button.textContent = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalText = button.textContent;
+                        button.classList.add('copied');
+                        button.textContent = '✓ Copied!';
+                        setTimeout(function() {
+                            button.classList.remove('copied');
+                            button.textContent = originalText;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            });
+        }
+    });
+});
+</script>
+
+<div class="blog-post">
+    <h1 class="blog-title">Wait, what's KL Divergence</h1>
+    
+    <div class="blog-meta">
+        <p class="blog-date">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 
+            May 16, 2025
+        </p>
+        
+        <p class="blog-author">
+            <i class="fa fa-user" aria-hidden="true"></i> 
+            Deepon Halder
+        </p>
+        
+        
+        <p class="blog-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i> 
+            
+                <span class="tag">machine learning</span>, 
+            
+                <span class="tag">statistics</span>, 
+            
+                <span class="tag">KL divergence</span>, 
+            
+                <span class="tag">probability distributions</span>, 
+            
+                <span class="tag">data science</span>
+            
+        </p>
+        
+    </div>
+    
+    <hr>
+    
+    <div class="blog-content">
+        <h2 id="story-time">Story Time</h2>
+
+<p>Dr. Maya, a data scientist at CityCare Hospital, noticed long patient wait times in the emergency room. To improve efficiency, she needed to model the true distribution of wait times and compare it against proposed scheduling models.</p>
+
+<p><img src="/assets/blog1/1.png" alt="Hospital Emergency Room" /></p>
+
+<p>So she started gathering data about the wait times, and found out the values follow a right-skewed curve.</p>
+
+<p><img src="/assets/blog1/2.png" alt="Wait Time Distribution" /></p>
+
+<p>This is the actual curve of the data. But now she needs to find the actual model that encompasses this distribution. So she proposes two models —</p>
+
+<ol>
+  <li>
+    <p><strong>Normal Distribution</strong></p>
+
+\[Q_1(x)=\frac{1}{\sqrt{2\pi \delta^2}}\exp\left(\frac{(x-\mu)^2}{2\delta^2}\right)\]
+  </li>
+  <li>
+    <p><strong>Exponential Distribution</strong></p>
+
+\[Q_2(x)=\lambda e^{-\lambda x}\]
+  </li>
+</ol>
+
+<p><img src="/assets/blog1/3.png" alt="Distribution Comparison" /></p>
+
+<h2 id="entropy">Entropy?</h2>
+
+<p>Imagine you run a shipping company. Each day, you receive packages labeled with different codes (say, A, B, C…), and you know the true frequency (probability) of each code from your records. Entropy tells you the <em>minimum average number of bits</em> you need to label these packages if you use the most efficient code possible—one that matches the true frequencies exactly.</p>
+
+\[H(p)=-\sum p(x)\log p(x)\]
+
+<h2 id="why-need-another-distribution">Why need another distribution?</h2>
+
+<p>Now, suppose you lose your records and have to guess the frequencies. You use a model distribution Q, which may not match reality. You design your codes based on Q, but packages still arrive according to P.</p>
+
+\[H(p,q)=-\sum p(x)\log q(x)\]
+
+<p>You’re still shipping the same packages, but your codes are now less efficient because your guesses don’t match reality. On average, you’ll need more bits per package.</p>
+
+<h2 id="kl-divergence">KL Divergence</h2>
+
+<p>KL divergence is the extra shipping cost you pay because you used the wrong map (Q) instead of the true one (P). It’s the difference between the code length you actually use (cross-entropy) and the best possible code length (entropy)</p>
+
+\[D_{KL}(P||Q)=H(P,Q)-H(P)=\sum P(x)[\log P(x)- \log Q(x)]\]
+
+\[D_{KL}(P||Q)= \sum P(x)\log\frac{P(x)}{Q(x)}\]
+
+<p>If your map (Q) matches reality (P), there’s no extra cost: KL divergence is zero. The more your map differs from reality, the more you overpay—KL divergence increases.</p>
+
+<h2 id="intuition">Intuition</h2>
+
+<p><strong>Step 1:</strong> Entropy (H(P)) is the expected “surprise” (bits needed) when you see outcomes from P, using codes tailored for P.</p>
+
+<p><strong>Step 2:</strong> Cross-entropy (H(P,Q)) is the expected “surprise” when you see outcomes from P, but use codes tailored for Q.</p>
+
+<p><strong>Step 3:</strong> The difference is the penalty for using codes built for Q instead of P—that’s KL divergence.</p>
+
+<p>It’s like packing for a trip based on a weather forecast (your model, Q). If the real weather (P) is different, you’ll bring the wrong clothes and have to buy or improvise—KL divergence measures your average “unpreparedness.”</p>
+
+<p>For our case, we get —</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">KL(P || Q1): 0.124</code></li>
+  <li><code class="language-plaintext highlighter-rouge">KL(P || Q2): 0.262</code></li>
+</ul>
+
+<p>So we see that the normal distribution is much better choice than the exponential distribution!</p>
+
+<h2 id="can-we-optimize">Can we optimize?</h2>
+
+<p>Let’s try to optimize the performance of the Exponential distribution and see if its value can be lower than Normal.</p>
+
+<p>We just need to solve this optimization problem:</p>
+
+\[\arg \min_{\lambda}(KL(P||Q))\]
+
+<p>At the minimum value we get the value of $\lambda$ as <code class="language-plaintext highlighter-rouge">0.9999</code></p>
+
+<p>And the lowest KL Divergence comes out to be — <code class="language-plaintext highlighter-rouge">0.2549</code></p>
+
+<p>So normal is still better!</p>
+
+<p><img src="/assets/blog1/4.png" alt="Optimization Results" /></p>
+
+<p>So our best bet for the problem is the normal model, which is —</p>
+
+<p><img src="/assets/blog1/5.png" alt="Final Model" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Through Dr. Maya’s hospital wait time analysis, we’ve seen how KL divergence serves as a powerful tool for model selection. By comparing how well different probability distributions capture the true data distribution, we can make informed decisions about which models to use in real-world applications.</p>
+
+<p>The key takeaways:</p>
+<ul>
+  <li>KL divergence measures the “cost” of using an approximate distribution instead of the true one</li>
+  <li>Lower KL divergence indicates a better model fit</li>
+  <li>Even with optimization, some model families may inherently be poor fits for certain data patterns</li>
+  <li>The normal distribution proved superior to the exponential distribution for modeling hospital wait times</li>
+</ul>
+
+<p>This practical approach to understanding KL divergence shows its value beyond theoretical statistics—it’s a crucial tool for data scientists making modeling decisions that impact real-world systems like hospital efficiency.</p>
+
+    </div>
+    
+    <hr>
+    
+    <div class="blog-navigation">
+        <a href="/blogs" class="back-to-blogs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Blogs
+        </a>
+    </div>
+</div>
+
+                
+            </div>
+    </div>
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XWRW1V88P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XWRW1V88P');
+</script>
+    
+</body>
+<footer>
+</footer>

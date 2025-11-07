@@ -8,7 +8,7 @@ tags: ["language models", "sampling methods", "top-b", "NLP", "generative AI"]
 hidden: true  
 ---
 
-_This project is being done at AI4Bharat, IIT Madras. The work is still in progress and in barebones state at the moment. We are releasing a part of the work that has been done for the community._
+_This project is being done at AI4Bharat, IIT Madras. The work is still in progress and in barebones state at the moment. We are releasing a part of the work done till date. The final paper with all the work and ablations will be out soon._
 
 ## 0. Introduction
 
@@ -125,7 +125,7 @@ All the experiments were run on 5-shot setting. The experiments were run on a se
 | Parameter      | Value                |
 | -------------- | -------------------- |
 | Model          | google/gemma-3-4b-it |
-| Max New Tokens | 512                  |
+| Max New Tokens | 1024                  |
 | Seed           | 42                   |
 | Dtype          | torch.bfloat16       |
 | Split          | gpqa_main            |
@@ -143,7 +143,7 @@ The results were as follows:
 | Top-k       | 0.2333     | 0.1815      |
 
 
-If we see the figure below, we see the variance is the least for top-b. We will implore if that is the case in most cases. We also achieve the lowest entropy with top-b.
+If we see the figure below, we see the variance is the least for top-b. We will explore if that is the case in most cases. We also achieve the lowest entropy with top-b.
 
 <figure style="max-width:450px; margin:auto;">
   <img src="/assets/top-b/gpqa_acc.png" alt="GPQA Scores" style="width:100%; height:auto;">
@@ -166,6 +166,27 @@ We also did an analysis of how the entropy maps in top-b v/s top-p. Figure below
 </figure>
 
 We see the patterns are pretty similar in both the cases, but in the second half of the plot, top-b makes the entropy to close to 0, while top-p still has a lot of confusion, aka high entropy. The average entropy is lower for top-b as well. We feel like top-b makes it sure that the number of points, where entropy can be high, are as low as possible - hence allowing the model to give answers with the least amount of variance.
+
+
+---
+
+### Experiment 2 : GSM8K
+
+
+GSM8K dataset ([Cobbe et al., 2021](https://arxiv.org/abs/2106.09403)) is a widely used benchmark dataset for evaluating language model performance on grade school math word problems.
+We go ahead with the same setup as the GPQA.
+
+All the experiments were run on 8-shot setting. Hyperparameters are attached below.
+
+| Parameter      | Value                |
+| -------------- | -------------------- |
+| Model          | google/gemma-3-4b-it |
+| Max New Tokens | 1024                  |
+| Seed           | 42                   |
+| Dtype          | torch.bfloat16       |
+| Split          | gsm8k_cot           |
+
+The results were as follows:
 
 
 ---
@@ -194,3 +215,4 @@ If you reference this work, please cite it as:
 - Holtzman, A., Buys, J., Du, L., Forbes, M., & Choi, Y. (2020). [*The Curious Case of Neural Text Degeneration*](https://arxiv.org/abs/1904.09751). *ICLR 2020*.
 - Minh, T. et al. (2024). [*Turning Up the Heat: Min-p Sampling for Reliable Language Model Decoding*](https://arxiv.org/abs/2407.19605). *arXiv preprint arXiv:2407.19605*.
 - Rein, D., Muennighoff, N., Schaeffer, R., Dey, M., & Xie, E. (2023). [*GPQA: A Graduate-Level Google-Proof Q&A Benchmark*](https://arxiv.org/abs/2311.12022). *arXiv preprint arXiv:2311.12022*.
+- Cobbe, K., Klimov, O., Hari, A., et al. (2021). [*Training Verifiers to Solve Math Word Problems*](https://arxiv.org/abs/2106.09403). *arXiv preprint arXiv:2106.09403*.
