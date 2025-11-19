@@ -284,7 +284,19 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
            <br>
    </div></td>
 </tr>
-
+---
+## Talks & Podcasts
+<tr>
+    <td><div>
+        <p>Talks or Podcasts I have done </p>
+        <ul>
+            <li><b>Lossfunk Talk:</b> <em>Why LLMs Think in English and How It Affects Their Performance</em> — link coming soon.</li>
+            <li><b>Down the Research Rabbit Hole: From Curiosity to Contribution (RaSoR IIT Madras):</b> <a href="https://www.youtube.com/watch?v=euY7S07t9OY" target="_blank" rel="noopener">Watch the session</a>.</li>
+            <li><b>Podcast with Siddhanth from IITBHU:</b> <a href="https://www.youtube.com/watch?v=StSOrcAbedc&t=384s" target="_blank" rel="noopener">Listen on YouTube</a>.</li>
+            <li><b>GDSC NIT Jalandhar Talk:</b> <a href="https://x.com/i/spaces/1mrGmBeonBnJy?s=20" target="_blank" rel="noopener">Twitter Space recording</a>.</li>
+        </ul>
+    </div></td>
+</tr>
 ---
 <br>
 <blockquote style="text-align:left;">
@@ -293,3 +305,4 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 </blockquote>
 <br>
 <br>
+
