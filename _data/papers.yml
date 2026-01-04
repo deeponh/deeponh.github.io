@@ -28,7 +28,7 @@
   link-arxiv: https://www.arxiv.org/abs/2510.24932
   link-projectpage: https://riddlebench.netlify.app/
   link-huggingface: https://huggingface.co/datasets/ai4bharat/RiddleBench
-  paper-pub: Under Review
+  paper-pub: EACL Findings 2026
 
 # ---------------------------------------------------------------
 # CyclicDistill
@@ -51,7 +51,7 @@
   link-projectpage: https://cycledistill.netlify.app/
   link-gitcode: https://github.com/deeps73/CycleDistill
   link-gitcode-button: https://ghbtns.com/github-btn.html?user=deeps73&repo=CycleDistill&type=star&count=true
-  paper-pub: MELT Workshop @ COLM 2025
+  paper-pub: MELT Workshop @ COLM 2025 / WAT @ IJCNLP-AACL 2025
 
 # ---------------------------------------------------------------
 # A Comprehensive Survey of Data Poisoning Attacks

@@ -35,7 +35,8 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2025</b>
         <ul>
-		<li> 05.11.2025 : CycleDistill has been accepted at <a style="text-decoration:none">WAT @ IJCLP-AACL 2025!</a></li>
+		<li> 04.01.2026 : Riddlebench has been accepted at <a style="text-decoration:none">EACL Findings 2026!</a></li>
+		<li> 05.11.2025 : CycleDistill has been accepted at <a style="text-decoration:none">WAT @ IJCNLP-AACL 2025!</a></li>
 		<li> 30.10.2025 : <a href="https://www.arxiv.org/abs/2510.24932">Riddlebench</a> Preprint is out!</li>
 		<li> 07.08.2025 : CycleDistill has been accepted at <a style="text-decoration:none">MELT Workshop, CoLM!</a></li>
 		<li> 13.07.2025 : Helped in reviewing two papers at <a style="text-decoration:none">MELT Workshop, CoLM</a></li>
@@ -290,6 +291,7 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
         <p>Talks or Podcasts I have done </p>
         <ul>
+			<li><b>WAT 2025 Presentation of CycleDistill:</b> <a href="https://www.youtube.com/watch?v=B7-51fmN4uA" target="_blank" rel="noopener">Watch the session</a>.</li>
             <li><b>Lossfunk Talk:</b> <em>Why LLMs Think in English and How It Affects Their Performance</em> — link coming soon.</li>
             <li><b>Down the Research Rabbit Hole: From Curiosity to Contribution (RaSoR IIT Madras):</b> <a href="https://www.youtube.com/watch?v=euY7S07t9OY" target="_blank" rel="noopener">Watch the session</a>.</li>
             <li><b>Podcast with Siddhanth from IITBHU:</b> <a href="https://www.youtube.com/watch?v=StSOrcAbedc&t=384s" target="_blank" rel="noopener">Listen on YouTube</a>.</li>
