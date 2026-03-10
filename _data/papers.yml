@@ -1,4 +1,50 @@
 # ---------------------------------------------------------------
+# Not All Time Is Gregorian
+# ---------------------------------------------------------------
+- year: "2026"
+  paper-logo: "assets/paper4.jpg"
+  paper-title: "Not All Time Is Gregorian: Evaluating LLMs on Cultural Calendar Systems"
+  paper-authors: 
+    - name: <b>Deepon Halder</b>
+      link: https://deeponh.github.io
+      institutions: [AI4Bharat, IIEST Shibpur]
+    - name: Adish Pandya
+      link: #
+      institutions: [AI4Bharat, SRM University]
+    - name: Raj Dabre
+      link: https://prajdabre.github.io/
+      institutions: [AI4Bharat, IIT Madras, IIT Bombay]
+
+  link-arxiv: #
+  link-projectpage: #
+  link-gitcode: #
+  link-gitcode-button: #
+  paper-pub: ICBINB Workshop @ICLR 2026
+
+# ---------------------------------------------------------------
+# Scripts Through Time
+# ---------------------------------------------------------------
+- year: "2026"
+  paper-logo: "assets/paper5.png"
+  paper-title: "Scripts Through Time: A Survey of the Evolving Role of Transliteration in NLP"
+  paper-authors: 
+    - name: Thanmay Jayakumar
+      link: https://thanmayjayakumar.github.io/
+      institutions: [AI4Bharat, IIT Madras]
+    - name: <b>Deepon Halder</b>
+      link: https://deeponh.github.io
+      institutions: [AI4Bharat, IIEST Shibpur]
+    - name: Raj Dabre
+      link: https://prajdabre.github.io/
+      institutions: [AI4Bharat, IIT Madras, IIT Bombay]
+
+  link-arxiv: https://github.com/AI4Bharat/Applications-of-Transiteration-in-NLP
+  link-projectpage: https://github.com/AI4Bharat/Applications-of-Transiteration-in-NLP
+  link-gitcode: https://github.com/AI4Bharat/Applications-of-Transiteration-in-NLP
+  link-gitcode-button: https://ghbtns.com/github-btn.html?user=AI4Bharat&repo=Applications-of-Transiteration-in-NLP&type=star&count=true
+  paper-pub: Survey Paper (Under Review)
+
+# ---------------------------------------------------------------
 # Riddlebench
 # ---------------------------------------------------------------
 - year: "2025"

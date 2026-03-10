@@ -33,9 +33,14 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
 ## News
 <tr>
     <td><div>
+	<b>2026</b>
+        <ul>
+		<li> 02.03.2026 : Not All Time is Gregorian has been accepted to <a style="text-decoration:none">ICBINB Workshop @ ICLR 2026!</a></li>
+		<li> 22.02.2026 : Helped in reviewing one paper at <a style="text-decoration:none">ACL Jan ARR 2026</a></li>
+				<li> 04.01.2026 : Riddlebench has been accepted at <a style="text-decoration:none">EACL Findings 2026!</a></li>
+        </ul>
 	<b>2025</b>
         <ul>
-		<li> 04.01.2026 : Riddlebench has been accepted at <a style="text-decoration:none">EACL Findings 2026!</a></li>
 		<li> 05.11.2025 : CycleDistill has been accepted at <a style="text-decoration:none">WAT @ IJCNLP-AACL 2025!</a></li>
 		<li> 30.10.2025 : <a href="https://www.arxiv.org/abs/2510.24932">Riddlebench</a> Preprint is out!</li>
 		<li> 07.08.2025 : CycleDistill has been accepted at <a style="text-decoration:none">MELT Workshop, CoLM!</a></li>
