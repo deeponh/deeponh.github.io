@@ -35,9 +35,10 @@ I am from India 🇮🇳. I work as a Research Intern at AI4Bharat, IIT Madras u
     <td><div>
 	<b>2026</b>
         <ul>
+		<li> 07.04.2026 : Scripts Through Time: A Survey of the Evolving Role of Transliteration in NLP has been accepted to <a style="text-decoration:none">ACL Findings 2026!</a></li>
 		<li> 02.03.2026 : Not All Time is Gregorian has been accepted to <a style="text-decoration:none">ICBINB Workshop @ ICLR 2026!</a></li>
 		<li> 22.02.2026 : Helped in reviewing one paper at <a style="text-decoration:none">ACL Jan ARR 2026</a></li>
-				<li> 04.01.2026 : Riddlebench has been accepted at <a style="text-decoration:none">EACL Findings 2026!</a></li>
+		<li> 04.01.2026 : Riddlebench has been accepted at <a style="text-decoration:none">EACL Findings 2026!</a></li>
         </ul>
 	<b>2025</b>
         <ul>
