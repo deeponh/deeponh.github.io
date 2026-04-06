@@ -2,7 +2,7 @@
 # Top-b
 # ---------------------------------------------------------------
 - year: "2026"
-  paper-logo: "assets/paper6.png"
+  paper-logo: "assets/paper7.png"
   paper-title: "Top-b: Entropic Regulation of Relative Probability Bands in Autoregressive Language Processes"
   paper-authors: 
     - name: <b>Deepon Halder</b>
@@ -22,7 +22,7 @@
 # Multilingual TinyStories
 # ---------------------------------------------------------------
 - year: "2026"
-  paper-logo: "assets/paper7.png"
+  paper-logo: "assets/paper6.png"
   paper-title: "Multilingual TinyStories: A Synthetic Combinatorial Corpus of Indic Children's Stories for Training Small Language Models"
   paper-authors: 
     - name: <b>Deepon Halder</b>
